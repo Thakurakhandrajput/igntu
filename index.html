@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon | Powered by Webglut</title>
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-main: #fafafa;
+            --card-bg: #ffffff;
+            --text-primary: #0f172a;
+            --text-secondary: #64748b;
+            --border-light: #e2e8f0;
+            --accent: #2563eb;
+            --accent-hover: #1d4ed8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            /* Subtle Clean Dot Grid Pattern */
+            background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+            background-size: 24px 24px;
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 1.25rem;
+        }
+
+        /* Top Status Pill */
+        header {
+            margin-top: 1rem;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-light);
+            padding: 0.45rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #10b981;
+            border-radius: 50%;
+            animation: blink 2s infinite ease-in-out;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        /* Main Clean Card */
+        main {
+            background: var(--card-bg);
+            border: 1px solid var(--border-light);
+            border-radius: 24px;
+            max-width: 640px;
+            width: 100%;
+            padding: 3.5rem 2.5rem;
+            text-align: center;
+            box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.05);
+            margin: 2rem 0;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 4.5vw, 3.2rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: var(--text-primary);
+            line-height: 1.15;
+            margin-bottom: 1rem;
+        }
+
+        p.subtitle {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.6;
+            max-width: 480px;
+            margin: 0 auto 2.5rem auto;
+            font-weight: 400;
+        }
+
+        /* Minimalist Countdown */
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 0.85rem;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .time-box {
+            background: var(--bg-main);
+            border: 1px solid var(--border-light);
+            border-radius: 14px;
+            padding: 1rem 0.75rem;
+            min-width: 85px;
+        }
+
+        .time-box .number {
+            display: block;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.2;
+        }
+
+        .time-box .label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-secondary);
+        }
+
+        /* Clean Email Form */
+        .notify-form {
+            display: flex;
+            gap: 0.5rem;
+            max-width: 440px;
+            margin: 0 auto;
+        }
+
+        .notify-form input {
+            flex: 1;
+            padding: 0.85rem 1.1rem;
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            background: var(--bg-main);
+            outline: none;
+            transition: border-color 0.2s ease, background 0.2s ease;
+        }
+
+        .notify-form input:focus {
+            border-color: var(--text-primary);
+            background: var(--card-bg);
+        }
+
+        .notify-form button {
+            background: var(--text-primary);
+            color: #ffffff;
+            border: none;
+            padding: 0.85rem 1.5rem;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s ease, transform 0.1s ease;
+            white-space: nowrap;
+        }
+
+        .notify-form button:hover {
+            background: #1e293b;
+        }
+
+        .notify-form button:active {
+            transform: scale(0.98);
+        }
+
+        .success-msg {
+            margin-top: 12px;
+            font-size: 0.85rem;
+            color: #059669;
+            font-weight: 500;
+            display: none;
+        }
+
+        /* Footer - Powered by Webglut */
+        footer {
+            margin-bottom: 0.5rem;
+        }
+
+        .powered-by {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+            font-weight: 500;
+            background: var(--card-bg);
+            padding: 0.55rem 1.1rem;
+            border-radius: 50px;
+            border: 1px solid var(--border-light);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+            transition: all 0.2s ease;
+        }
+
+        .powered-by strong {
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        .powered-by:hover {
+            border-color: #cbd5e1;
+            color: var(--text-primary);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 500px) {
+            main {
+                padding: 2.5rem 1.25rem;
+                border-radius: 20px;
+            }
+            .notify-form {
+                flex-direction: column;
+            }
+            .notify-form button {
+                width: 100%;
+            }
+            .time-box {
+                min-width: 70px;
+                padding: 0.75rem 0.5rem;
+            }
+            .time-box .number {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Badge -->
+    <header>
+        <div class="status-badge">
+            <span class="status-dot"></span>
+            Website Under Construction
+        </div>
+    </header>
+
+    <!-- Main Center Box -->
+    <main>
+        <h1>Something Great is Coming Soon</h1>
+        <p class="subtitle">
+            We are working hard behind the scenes to bring you a seamless new experience. Stay tuned for the official launch.
+        </p>
+
+        <!-- Countdown Timer -->
+        <div class="countdown">
+            <div class="time-box">
+                <span class="number" id="days">00</span>
+                <span class="label">Days</span>
+            </div>
+            <div class="time-box">
+                <span class="number" id="hours">00</span>
+                <span class="label">Hours</span>
+            </div>
+            <div class="time-box">
+                <span class="number" id="minutes">00</span>
+                <span class="label">Minutes</span>
+            </div>
+            <div class="time-box">
+                <span class="number" id="seconds">00</span>
+                <span class="label">Seconds</span>
+            </div>
+        </div>
+
+        <!-- Notification Form -->
+        <form class="notify-form" onsubmit="handleNotify(event)">
+            <input type="email" id="email" placeholder="Enter your email address" required>
+            <button type="submit">Notify Me</button>
+        </form>
+        <p class="success-msg" id="successMsg">✓ Thank you! We'll notify you when we go live.</p>
+    </main>
+
+    <!-- Footer Branding -->
+    <footer>
+        <a href="https://webglut.in" target="_blank" rel="noopener noreferrer" class="powered-by">
+            Powered by <strong>Webglut</strong>
+        </a>
+    </footer>
+
+    <!-- Countdown Script -->
+    <script>
+        // Default launch time set to 10 days from now
+        const targetDate = new Date();
+        targetDate.setDate(targetDate.getDate() + 10);
+
+        function updateTimer() {
+            const now = new Date().getTime();
+            const diff = targetDate - now;
+
+            if (diff <= 0) return;
+
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerText = String(d).padStart(2, '0');
+            document.getElementById('hours').innerText = String(h).padStart(2, '0');
+            document.getElementById('minutes').innerText = String(m).padStart(2, '0');
+            document.getElementById('seconds').innerText = String(s).padStart(2, '0');
+        }
+
+        setInterval(updateTimer, 1000);
+        updateTimer();
+
+        function handleNotify(e) {
+            e.preventDefault();
+            document.getElementById('email').value = '';
+            document.getElementById('successMsg').style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>
