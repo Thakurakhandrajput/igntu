@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Coming Soon | Powered by Webglut</title>
     <!-- Google Fonts: Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -24,23 +24,28 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
         }
 
+        html, body {
+            height: 100%;
+            width: 100%;
+            overflow: hidden; /* स्क्रॉलिंग एकदम बंद */
+        }
+
         body {
             background-color: var(--bg-main);
-            /* Subtle Clean Dot Grid Pattern */
             background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
             background-size: 24px 24px;
             color: var(--text-primary);
-            min-height: 100vh;
+            height: 100dvh; /* मोबाइल ब्राउज़र के हिसाब से एकदम सटीक हाइट */
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
-            padding: 2rem 1.25rem;
+            padding: clamp(0.75rem, 2.5vh, 2rem) 1rem;
         }
 
         /* Top Status Pill */
         header {
-            margin-top: 1rem;
+            flex-shrink: 0;
         }
 
         .status-badge {
@@ -49,9 +54,9 @@
             gap: 8px;
             background: var(--card-bg);
             border: 1px solid var(--border-light);
-            padding: 0.45rem 1rem;
+            padding: clamp(0.35rem, 1vh, 0.45rem) 1rem;
             border-radius: 50px;
-            font-size: 0.8rem;
+            font-size: clamp(0.72rem, 1.8vw, 0.8rem);
             font-weight: 600;
             color: var(--text-secondary);
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
@@ -70,67 +75,70 @@
             50% { opacity: 0.4; }
         }
 
-        /* Main Clean Card */
+        /* Main Clean Card - स्क्रीन के हिसाब से खुद एडजस्ट होगा */
         main {
             background: var(--card-bg);
             border: 1px solid var(--border-light);
-            border-radius: 24px;
-            max-width: 640px;
+            border-radius: clamp(16px, 3vw, 24px);
+            max-width: 600px;
             width: 100%;
-            padding: 3.5rem 2.5rem;
+            padding: clamp(1.25rem, 4vh, 3.2rem) clamp(1rem, 4vw, 2.5rem);
             text-align: center;
             box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.05);
-            margin: 2rem 0;
+            margin: auto 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         h1 {
-            font-size: clamp(2rem, 4.5vw, 3.2rem);
+            font-size: clamp(1.5rem, 4.5vw, 3rem);
             font-weight: 800;
             letter-spacing: -0.03em;
             color: var(--text-primary);
             line-height: 1.15;
-            margin-bottom: 1rem;
+            margin-bottom: clamp(0.5rem, 1.5vh, 1rem);
         }
 
         p.subtitle {
             color: var(--text-secondary);
-            font-size: 1.05rem;
-            line-height: 1.6;
-            max-width: 480px;
-            margin: 0 auto 2.5rem auto;
+            font-size: clamp(0.85rem, 2.2vw, 1.05rem);
+            line-height: 1.5;
+            max-width: 460px;
+            margin: 0 auto clamp(1.2rem, 3.5vh, 2.2rem) auto;
             font-weight: 400;
         }
 
-        /* Minimalist Countdown */
+        /* Minimalist Countdown - हमेशा एक लाइन में फिट रहेगा */
         .countdown {
-            display: flex;
-            justify-content: center;
-            gap: 0.85rem;
-            margin-bottom: 2.5rem;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: clamp(0.4rem, 1.5vw, 0.85rem);
+            max-width: 420px;
+            width: 100%;
+            margin: 0 auto clamp(1.2rem, 3.5vh, 2.2rem) auto;
         }
 
         .time-box {
             background: var(--bg-main);
             border: 1px solid var(--border-light);
-            border-radius: 14px;
-            padding: 1rem 0.75rem;
-            min-width: 85px;
+            border-radius: 12px;
+            padding: clamp(0.5rem, 1.5vh, 1rem) 0.25rem;
         }
 
         .time-box .number {
             display: block;
-            font-size: 1.75rem;
+            font-size: clamp(1.2rem, 3.5vw, 1.75rem);
             font-weight: 700;
             color: var(--text-primary);
             line-height: 1.2;
         }
 
         .time-box .label {
-            font-size: 0.7rem;
+            font-size: clamp(0.6rem, 1.5vw, 0.7rem);
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.04em;
             color: var(--text-secondary);
         }
 
@@ -139,15 +147,17 @@
             display: flex;
             gap: 0.5rem;
             max-width: 440px;
+            width: 100%;
             margin: 0 auto;
         }
 
         .notify-form input {
             flex: 1;
-            padding: 0.85rem 1.1rem;
+            min-width: 0;
+            padding: clamp(0.65rem, 1.8vh, 0.85rem) 1rem;
             border: 1px solid var(--border-light);
             border-radius: 12px;
-            font-size: 0.95rem;
+            font-size: clamp(0.85rem, 2vw, 0.95rem);
             color: var(--text-primary);
             background: var(--bg-main);
             outline: none;
@@ -163,9 +173,9 @@
             background: var(--text-primary);
             color: #ffffff;
             border: none;
-            padding: 0.85rem 1.5rem;
+            padding: clamp(0.65rem, 1.8vh, 0.85rem) 1.25rem;
             border-radius: 12px;
-            font-size: 0.95rem;
+            font-size: clamp(0.85rem, 2vw, 0.95rem);
             font-weight: 600;
             cursor: pointer;
             transition: background 0.2s ease, transform 0.1s ease;
@@ -181,8 +191,8 @@
         }
 
         .success-msg {
-            margin-top: 12px;
-            font-size: 0.85rem;
+            margin-top: 8px;
+            font-size: 0.8rem;
             color: #059669;
             font-weight: 500;
             display: none;
@@ -190,19 +200,19 @@
 
         /* Footer - Powered by Webglut */
         footer {
-            margin-bottom: 0.5rem;
+            flex-shrink: 0;
         }
 
         .powered-by {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
             text-decoration: none;
             color: var(--text-secondary);
-            font-size: 0.88rem;
+            font-size: clamp(0.78rem, 2vw, 0.88rem);
             font-weight: 500;
             background: var(--card-bg);
-            padding: 0.55rem 1.1rem;
+            padding: clamp(0.4rem, 1vh, 0.55rem) 1rem;
             border-radius: 50px;
             border: 1px solid var(--border-light);
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
@@ -221,24 +231,13 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
         }
 
-        /* Mobile Responsive */
-        @media (max-width: 500px) {
-            main {
-                padding: 2.5rem 1.25rem;
-                border-radius: 20px;
-            }
+        /* छोटे मोबाइल के लिए खास सेटिंग */
+        @media (max-width: 480px) {
             .notify-form {
                 flex-direction: column;
             }
             .notify-form button {
                 width: 100%;
-            }
-            .time-box {
-                min-width: 70px;
-                padding: 0.75rem 0.5rem;
-            }
-            .time-box .number {
-                font-size: 1.4rem;
             }
         }
     </style>
@@ -297,7 +296,6 @@
 
     <!-- Countdown Script -->
     <script>
-        // Default launch time set to 10 days from now
         const targetDate = new Date();
         targetDate.setDate(targetDate.getDate() + 10);
 
