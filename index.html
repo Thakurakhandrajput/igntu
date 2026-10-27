@@ -1,330 +1,234 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Coming Soon | Powered by Webglut</title>
-    <!-- Google Fonts: Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-main: #fafafa;
-            --card-bg: #ffffff;
-            --text-primary: #0f172a;
-            --text-secondary: #64748b;
-            --border-light: #e2e8f0;
-            --accent: #2563eb;
-            --accent-hover: #1d4ed8;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>System Override | Akhand Pratap Singh</title>
+  <!-- Google Fonts for Premium Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-primary: #f8fafc;
+      --card-bg: rgba(255, 255, 255, 0.85);
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --accent: #e11d48;
+      --accent-soft: rgba(225, 29, 72, 0.1);
+      --border-light: rgba(15, 23, 42, 0.08);
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-        }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        html, body {
-            height: 100%;
-            width: 100%;
-            overflow: hidden; /* स्क्रॉलिंग एकदम बंद */
-        }
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg-primary);
+      /* Subtle premium light mesh & grid background */
+      background-image: 
+        radial-gradient(at 20% 20%, rgba(225, 29, 72, 0.07) 0px, transparent 50%),
+        radial-gradient(at 80% 80%, rgba(59, 130, 246, 0.07) 0px, transparent 50%),
+        linear-gradient(to right, rgba(15, 23, 42, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(15, 23, 42, 0.03) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 36px 36px, 36px 36px;
+      color: var(--text-main);
+      padding: 24px;
+    }
 
-        body {
-            background-color: var(--bg-main);
-            background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
-            background-size: 24px 24px;
-            color: var(--text-primary);
-            height: 100dvh; /* मोबाइल ब्राउज़र के हिसाब से एकदम सटीक हाइट */
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            padding: clamp(0.75rem, 2.5vh, 2rem) 1rem;
-        }
+    .card {
+      max-width: 540px;
+      width: 100%;
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border-light);
+      border-radius: 28px;
+      padding: 48px 36px;
+      text-align: center;
+      box-shadow: 
+        0 20px 50px -12px rgba(15, 23, 42, 0.08),
+        0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
 
-        /* Top Status Pill */
-        header {
-            flex-shrink: 0;
-        }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 
+        0 28px 60px -12px rgba(15, 23, 42, 0.12),
+        0 0 0 1px rgba(255, 255, 255, 0.9) inset;
+    }
 
-        .status-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: var(--card-bg);
-            border: 1px solid var(--border-light);
-            padding: clamp(0.35rem, 1vh, 0.45rem) 1rem;
-            border-radius: 50px;
-            font-size: clamp(0.72rem, 1.8vw, 0.8rem);
-            font-weight: 600;
-            color: var(--text-secondary);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
-        }
+    /* Live Alert Badge */
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 8px 16px;
+      border-radius: 999px;
+      margin-bottom: 28px;
+      border: 1px solid rgba(225, 29, 72, 0.2);
+    }
 
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            background-color: #10b981;
-            border-radius: 50%;
-            animation: blink 2s infinite ease-in-out;
-        }
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background-color: var(--accent);
+      border-radius: 50%;
+      animation: pulse 1.8s infinite;
+    }
 
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
-        }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(225, 29, 72, 0.6); }
+      70% { box-shadow: 0 0 0 8px rgba(225, 29, 72, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(225, 29, 72, 0); }
+    }
 
-        /* Main Clean Card - स्क्रीन के हिसाब से खुद एडजस्ट होगा */
-        main {
-            background: var(--card-bg);
-            border: 1px solid var(--border-light);
-            border-radius: clamp(16px, 3vw, 24px);
-            max-width: 600px;
-            width: 100%;
-            padding: clamp(1.25rem, 4vh, 3.2rem) clamp(1rem, 4vw, 2.5rem);
-            text-align: center;
-            box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.05);
-            margin: auto 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
+    /* Profile Image Container */
+    .avatar-wrapper {
+      position: relative;
+      width: 150px;
+      height: 150px;
+      margin: 0 auto 28px;
+      border-radius: 50%;
+      padding: 5px;
+      background: linear-gradient(135deg, #0f172a 0%, #e11d48 100%);
+      box-shadow: 0 14px 30px rgba(225, 29, 72, 0.18);
+    }
 
-        h1 {
-            font-size: clamp(1.5rem, 4.5vw, 3rem);
-            font-weight: 800;
-            letter-spacing: -0.03em;
-            color: var(--text-primary);
-            line-height: 1.15;
-            margin-bottom: clamp(0.5rem, 1.5vh, 1rem);
-        }
+    .avatar-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid #ffffff;
+      display: block;
+      background-color: #e2e8f0;
+    }
 
-        p.subtitle {
-            color: var(--text-secondary);
-            font-size: clamp(0.85rem, 2.2vw, 1.05rem);
-            line-height: 1.5;
-            max-width: 460px;
-            margin: 0 auto clamp(1.2rem, 3.5vh, 2.2rem) auto;
-            font-weight: 400;
-        }
+    .subtitle {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 8px;
+    }
 
-        /* Minimalist Countdown - हमेशा एक लाइन में फिट रहेगा */
-        .countdown {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: clamp(0.4rem, 1.5vw, 0.85rem);
-            max-width: 420px;
-            width: 100%;
-            margin: 0 auto clamp(1.2rem, 3.5vh, 2.2rem) auto;
-        }
+    h1 {
+      font-size: 1.95rem;
+      font-weight: 800;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      color: var(--text-main);
+      margin-bottom: 14px;
+    }
 
-        .time-box {
-            background: var(--bg-main);
-            border: 1px solid var(--border-light);
-            border-radius: 12px;
-            padding: clamp(0.5rem, 1.5vh, 1rem) 0.25rem;
-        }
+    h1 span {
+      background: linear-gradient(135deg, #0f172a 0%, #e11d48 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: block;
+      margin-top: 4px;
+    }
 
-        .time-box .number {
-            display: block;
-            font-size: clamp(1.2rem, 3.5vw, 1.75rem);
-            font-weight: 700;
-            color: var(--text-primary);
-            line-height: 1.2;
-        }
+    p.description {
+      font-size: 0.98rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+    }
 
-        .time-box .label {
-            font-size: clamp(0.6rem, 1.5vw, 0.7rem);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-            color: var(--text-secondary);
-        }
+    /* Terminal Style Footer Box */
+    .terminal-bar {
+      background: #f1f5f9;
+      border: 1px solid var(--border-light);
+      border-radius: 14px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: #334155;
+    }
 
-        /* Clean Email Form */
-        .notify-form {
-            display: flex;
-            gap: 0.5rem;
-            max-width: 440px;
-            width: 100%;
-            margin: 0 auto;
-        }
+    .terminal-dots {
+      display: flex;
+      gap: 6px;
+    }
 
-        .notify-form input {
-            flex: 1;
-            min-width: 0;
-            padding: clamp(0.65rem, 1.8vh, 0.85rem) 1rem;
-            border: 1px solid var(--border-light);
-            border-radius: 12px;
-            font-size: clamp(0.85rem, 2vw, 0.95rem);
-            color: var(--text-primary);
-            background: var(--bg-main);
-            outline: none;
-            transition: border-color 0.2s ease, background 0.2s ease;
-        }
+    .terminal-dots span {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
 
-        .notify-form input:focus {
-            border-color: var(--text-primary);
-            background: var(--card-bg);
-        }
+    .dot-red { background: #ef4444; }
+    .dot-yellow { background: #f59e0b; }
+    .dot-green { background: #10b981; }
 
-        .notify-form button {
-            background: var(--text-primary);
-            color: #ffffff;
-            border: none;
-            padding: clamp(0.65rem, 1.8vh, 0.85rem) 1.25rem;
-            border-radius: 12px;
-            font-size: clamp(0.85rem, 2vw, 0.95rem);
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.2s ease, transform 0.1s ease;
-            white-space: nowrap;
-        }
-
-        .notify-form button:hover {
-            background: #1e293b;
-        }
-
-        .notify-form button:active {
-            transform: scale(0.98);
-        }
-
-        .success-msg {
-            margin-top: 8px;
-            font-size: 0.8rem;
-            color: #059669;
-            font-weight: 500;
-            display: none;
-        }
-
-        /* Footer - Powered by Webglut */
-        footer {
-            flex-shrink: 0;
-        }
-
-        .powered-by {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            text-decoration: none;
-            color: var(--text-secondary);
-            font-size: clamp(0.78rem, 2vw, 0.88rem);
-            font-weight: 500;
-            background: var(--card-bg);
-            padding: clamp(0.4rem, 1vh, 0.55rem) 1rem;
-            border-radius: 50px;
-            border: 1px solid var(--border-light);
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
-            transition: all 0.2s ease;
-        }
-
-        .powered-by strong {
-            color: var(--text-primary);
-            font-weight: 700;
-        }
-
-        .powered-by:hover {
-            border-color: #cbd5e1;
-            color: var(--text-primary);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-        }
-
-        /* छोटे मोबाइल के लिए खास सेटिंग */
-        @media (max-width: 480px) {
-            .notify-form {
-                flex-direction: column;
-            }
-            .notify-form button {
-                width: 100%;
-            }
-        }
-    </style>
+    @media (max-width: 480px) {
+      .card {
+        padding: 36px 22px;
+      }
+      h1 {
+        font-size: 1.55rem;
+      }
+      .avatar-wrapper {
+        width: 125px;
+        height: 125px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <!-- Top Badge -->
-    <header>
-        <div class="status-badge">
-            <span class="status-dot"></span>
-            Akhand Pratap Singh
-        </div>
-    </header>
+  <main class="card">
+    <div class="status-badge">
+      <span class="pulse-dot"></span>
+      System Access Active
+    </div>
 
-    <!-- Main Center Box -->
-    <main>
-        <h1>Something Great is Coming Soon</h1>
-        <p class="subtitle">
-            We are working hard behind the scenes to bring you a seamless new experience. Stay tuned for the official launch.
-        </p>
+    <div class="avatar-wrapper">
+      <img src="image.jpg" alt="Akhand Pratap Singh" />
+    </div>
 
-        <!-- Countdown Timer -->
-        <div class="countdown">
-            <div class="time-box">
-                <span class="number" id="days">00</span>
-                <span class="label">Days</span>
-            </div>
-            <div class="time-box">
-                <span class="number" id="hours">00</span>
-                <span class="label">Hours</span>
-            </div>
-            <div class="time-box">
-                <span class="number" id="minutes">00</span>
-                <span class="label">Minutes</span>
-            </div>
-            <div class="time-box">
-                <span class="number" id="seconds">00</span>
-                <span class="label">Seconds</span>
-            </div>
-        </div>
+    <div class="subtitle">Security Override Notice</div>
+    
+    <h1>
+      Website Hacked By
+      <span>Akhand Pratap Singh</span>
+    </h1>
 
-        <!-- Notification Form -->
-        <form class="notify-form" onsubmit="handleNotify(event)">
-            <input type="email" id="email" placeholder="Enter your email address" required>
-            <button type="submit">Notify Me</button>
-        </form>
-        <p class="success-msg" id="successMsg">✓ Thank you! We'll notify you when we go live.</p>
-    </main>
+    <p class="description">
+      Root access established. All systems and domain configurations are currently under administrative control.
+    </p>
 
-    <!-- Footer Branding -->
-    <footer>
-        <a href="https://webglut.in" target="_blank" rel="noopener noreferrer" class="powered-by">
-            Powered by <strong>Webglut</strong>
-        </a>
-    </footer>
-
-    <!-- Countdown Script -->
-    <script>
-        const targetDate = new Date();
-        targetDate.setDate(targetDate.getDate() + 10);
-
-        function updateTimer() {
-            const now = new Date().getTime();
-            const diff = targetDate - now;
-
-            if (diff <= 0) return;
-
-            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const s = Math.floor((diff % (1000 * 60)) / 1000);
-
-            document.getElementById('days').innerText = String(d).padStart(2, '0');
-            document.getElementById('hours').innerText = String(h).padStart(2, '0');
-            document.getElementById('minutes').innerText = String(m).padStart(2, '0');
-            document.getElementById('seconds').innerText = String(s).padStart(2, '0');
-        }
-
-        setInterval(updateTimer, 1000);
-        updateTimer();
-
-        function handleNotify(e) {
-            e.preventDefault();
-            document.getElementById('email').value = '';
-            document.getElementById('successMsg').style.display = 'block';
-        }
-    </script>
+    <div class="terminal-bar">
+      <div class="terminal-dots">
+        <span class="dot-red"></span>
+        <span class="dot-yellow"></span>
+        <span class="dot-green"></span>
+      </div>
+      <span>root@system:~# status --verified</span>
+    </div>
+  </main>
 
 </body>
 </html>
